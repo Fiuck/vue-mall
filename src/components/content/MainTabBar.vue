@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tab-bar :barItems="barItems"></tab-bar>
+    <tab-bar :barItems="barItems" :itemStyle="itemStyle"></tab-bar>
   </div>
 </template>
 
@@ -40,11 +40,11 @@ export default {
           activeIconClass: "iconfont icon-TABbar-fill",
         },
       ],
-      // itemStyle: {
-      //   normalIconColor: "cyan",
-      //   activeIconColor: "red",
-      //   textColor: "green",
-      // },
+      itemStyle: {
+        normalIconColor: "#000",
+        activeIconColor: "#ff5777",
+        textColor: "#000",
+      },
     };
   },
 };
