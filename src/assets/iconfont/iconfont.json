@@ -1,0 +1,65 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1043314",
+      "name": " ic_tabbar_home",
+      "font_class": "tabbarhome",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "1043315",
+      "name": "ic_tabbar_home_select",
+      "font_class": "tabbarhomeselect",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "13168128",
+      "name": "03TABbar",
+      "font_class": "TABbar",
+      "unicode": "e729",
+      "unicode_decimal": 59177
+    },
+    {
+      "icon_id": "13168130",
+      "name": "05TABbar",
+      "font_class": "TABbar1",
+      "unicode": "e72a",
+      "unicode_decimal": 59178
+    },
+    {
+      "icon_id": "13168131",
+      "name": "05TABbar-fill",
+      "font_class": "TABbar-fill",
+      "unicode": "e72b",
+      "unicode_decimal": 59179
+    },
+    {
+      "icon_id": "13168133",
+      "name": "03TABbar-fill",
+      "font_class": "TABbar-fill1",
+      "unicode": "e72c",
+      "unicode_decimal": 59180
+    },
+    {
+      "icon_id": "18270345",
+      "name": "tabbar-icon-chanpin-selected",
+      "font_class": "tabbar-icon-chanpin-selected",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "18270348",
+      "name": "tabbar-icon-chanpin-default",
+      "font_class": "tabbar-icon-chanpin-default",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    }
+  ]
+}
