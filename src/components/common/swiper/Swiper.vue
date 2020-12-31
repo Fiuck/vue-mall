@@ -21,7 +21,8 @@ export default {
     };
   },
   mounted() {
-    this.names = this.$children.map((children) => children.name);
+    // this.names = this.$children.map((children) => children.name);
+    // this.names = this.$refs.swiper
     this.itemLen = this.names.length;
     this.showChildren();
   },
@@ -38,8 +39,9 @@ export default {
 
 <style scoped>
 .swiper-wrapper {
+  position: relative;
+  overflow: hidden;
   height: 145px;
   width: 100%;
-  position: relative;
 }
 </style>

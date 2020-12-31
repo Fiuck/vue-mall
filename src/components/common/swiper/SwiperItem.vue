@@ -9,7 +9,7 @@ export default {
   name: "SwiperItem",
   props: {
     name: {
-      type: String,
+      type: [String, Number],
       required: true,
     },
   },

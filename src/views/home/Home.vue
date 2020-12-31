@@ -21,7 +21,7 @@
 <script>
 import NavBar from "components/common/navbar/NavBar";
 import { getHomeMultiData } from "network/home";
-import { Swiper, SwiperItem } from "components/common/swiper/index";
+import { Swiper, SwiperItem } from "components/common/swiper";
 
 export default {
   components: { NavBar, Swiper, SwiperItem },
