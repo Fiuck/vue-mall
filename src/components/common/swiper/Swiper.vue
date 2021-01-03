@@ -229,9 +229,11 @@ export default {
 </script>
 
 <style scoped>
-#hy-swiper {
-  overflow: hidden;
+.swiper-wrapper {
   position: relative;
+  overflow: hidden;
+  height: 145px;
+  width: 100%;
 }
 
 .swiper {

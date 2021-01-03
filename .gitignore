@@ -2,7 +2,7 @@
 node_modules
 .history
 /dist
-
+debug.log
 
 # local env files
 .env.local
