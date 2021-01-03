@@ -1,29 +1,22 @@
 <template>
-  <div class="swiper-item">
-    <slot></slot>
-  </div>
+    <div class="slide">
+      <slot></slot>
+    </div>
 </template>
 
 <script>
-export default {
-  name: "SwiperItem",
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      selected: "",
-    };
-  },
-  computed: {
-    isShow() {
-      return this.selected === this.name;
-    },
-  },
-};
+	export default {
+		name: "Slide"
+	}
 </script>
 
-<style scoped></style>
+<style scoped>
+  .slide {
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  .slide img {
+    width: 100%;
+  }
+</style>

@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
   configureWebpack: {
@@ -6,13 +6,13 @@ module.exports = {
       // 配置目录别名
       alias: {
         // '@': path.resolve('src'),
-        'components': '@/components',
-        'assets': '@/assets',
-        'common': '@/common',
-        'views': '@/views',
-        'network': '@/network'
-      }
-    }
+        components: "@/components",
+        assets: "@/assets",
+        common: "@/common",
+        views: "@/views",
+        network: "@/network",
+      },
+    },
   },
   devServer: {
     port: 8000,

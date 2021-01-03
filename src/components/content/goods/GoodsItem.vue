@@ -1,0 +1,34 @@
+<template>
+  <div class="goods-item-wrapper">
+    <img :src="goodsItem.show.img" alt="" />
+    <div class="goods-info">
+      <p>{{ goodsItem.title }}</p>
+      <span class="goods-price">{{ goodsItem.price }}</span>
+      <span class="goods-collect">{{ goodsItem.cfav }}</span>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "GoodsItem",
+  props: {
+    goodsItem: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+  },
+  data() {
+    return {};
+  },
+};
+</script>
+
+<style scoped>
+.goods-item-wrapper {
+  padding-bottom: 40px;
+  position: relative;
+}
+</style>
