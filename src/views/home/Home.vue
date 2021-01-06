@@ -1,14 +1,18 @@
 <template>
-  <div>
+  <div class="home">
     <nav-bar :styleObj="styleObj">
       <template #nav-bar-center>
         <span>购物街</span>
       </template>
     </nav-bar>
-    <home-swiper :banners="banners"></home-swiper>
-    <home-recommend :recommends="recommends"></home-recommend>
-    <tab-control :titles="titles" @itemClick="itemClick"></tab-control>
-    <goods-wrapper :goodsList="showGoods"></goods-wrapper>
+    <scroll class="scroll-content">
+      <div>
+        <home-swiper :banners="banners"></home-swiper>
+        <home-recommend :recommends="recommends"></home-recommend>
+        <tab-control :titles="titles" @itemClick="itemClick"></tab-control>
+        <goods-wrapper :goodsList="showGoods"></goods-wrapper>
+      </div>
+    </scroll>
   </div>
 </template>
 
@@ -19,9 +23,10 @@ import HomeSwiper from "views/home/childcomponents/HomeSwiper";
 import HomeRecommend from "views/home/childcomponents/HomeRecommend";
 import TabControl from "components/content/tabcontrol/TabControl";
 import GoodsWrapper from "components/content/goods/GoodsWrapper";
+import Scroll from 'components/common/scroll/Scroll'
 
 export default {
-  components: { NavBar, HomeSwiper, HomeRecommend, TabControl, GoodsWrapper },
+  components: { NavBar, HomeSwiper, HomeRecommend, TabControl, GoodsWrapper, Scroll },
   name: "Home",
   data() {
     return {
@@ -91,4 +96,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+  .home {
+    /* height: 100vh; */
+  }
+  .scroll-content {
+    position: absolute;
+    top: 44px;
+    bottom: 49px;
+    left: 0;
+    right: 0;
+    /* overflow: hidden; */
+  }
+</style>
