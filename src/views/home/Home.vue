@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <nav-bar :styleObj="styleObj">
+    <nav-bar :styleObj="styleObj" class="nav-bar">
       <template #nav-bar-center>
         <span>购物街</span>
       </template>
@@ -98,7 +98,7 @@ export default {
 
 <style scoped>
   .home {
-    /* height: 100vh; */
+    height: 100vh;
   }
   .scroll-content {
     position: absolute;
@@ -106,6 +106,6 @@ export default {
     bottom: 49px;
     left: 0;
     right: 0;
-    /* overflow: hidden; */
+    overflow-y: hidden;
   }
 </style>
