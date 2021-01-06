@@ -13,6 +13,7 @@
         <goods-wrapper :goodsList="showGoods"></goods-wrapper>
       </div>
     </scroll>
+    <top-back></top-back>
   </div>
 </template>
 
@@ -24,9 +25,18 @@ import HomeRecommend from "views/home/childcomponents/HomeRecommend";
 import TabControl from "components/content/tabcontrol/TabControl";
 import GoodsWrapper from "components/content/goods/GoodsWrapper";
 import Scroll from 'components/common/scroll/Scroll'
+import TopBack from 'components/content/topback/TopBack'
 
 export default {
-  components: { NavBar, HomeSwiper, HomeRecommend, TabControl, GoodsWrapper, Scroll },
+  components: {
+    NavBar,
+    HomeSwiper,
+    HomeRecommend,
+    TabControl,
+    GoodsWrapper,
+    Scroll,
+    TopBack
+  },
   name: "Home",
   data() {
     return {
