@@ -5,7 +5,7 @@
         <span>购物街</span>
       </template>
     </nav-bar>
-    <scroll class="scroll-content">
+    <scroll class="scroll-content" ref="scroll" @scroll="contentScroll">
       <div>
         <home-swiper :banners="banners"></home-swiper>
         <home-recommend :recommends="recommends"></home-recommend>
@@ -13,7 +13,7 @@
         <goods-wrapper :goodsList="showGoods"></goods-wrapper>
       </div>
     </scroll>
-    <top-back></top-back>
+    <top-back @backTop="backTop" v-show="showTopBack"></top-back>
   </div>
 </template>
 
@@ -24,8 +24,8 @@ import HomeSwiper from "views/home/childcomponents/HomeSwiper";
 import HomeRecommend from "views/home/childcomponents/HomeRecommend";
 import TabControl from "components/content/tabcontrol/TabControl";
 import GoodsWrapper from "components/content/goods/GoodsWrapper";
-import Scroll from 'components/common/scroll/Scroll'
-import TopBack from 'components/content/topback/TopBack'
+import Scroll from "components/common/scroll/Scroll";
+import TopBack from "components/content/topback/TopBack";
 
 export default {
   components: {
@@ -35,7 +35,7 @@ export default {
     TabControl,
     GoodsWrapper,
     Scroll,
-    TopBack
+    TopBack,
   },
   name: "Home",
   data() {
@@ -56,6 +56,7 @@ export default {
         sell: { page: 0, list: [] },
       },
       currentIndex: "pop",
+      showTopBack: false,
     };
   },
   computed: {
@@ -83,6 +84,16 @@ export default {
       };
       this.currentIndex = json["type" + index];
     },
+    /**
+     * 回到顶部
+     */
+    backTop() {
+      this.$refs.scroll.scrollTo(0, 0, 300);
+    },
+    contentScroll(position) {
+      // 决定topback是否显示
+      this.showTopBack = position.y < -200;
+    },
 
     /**
      * =========================请求接口数据=========================
@@ -107,15 +118,15 @@ export default {
 </script>
 
 <style scoped>
-  .home {
-    height: 100vh;
-  }
-  .scroll-content {
-    position: absolute;
-    top: 44px;
-    bottom: 49px;
-    left: 0;
-    right: 0;
-    overflow-y: hidden;
-  }
+.home {
+  height: 100vh;
+}
+.scroll-content {
+  position: absolute;
+  top: 44px;
+  bottom: 49px;
+  left: 0;
+  right: 0;
+  overflow-y: hidden;
+}
 </style>
