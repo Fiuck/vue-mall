@@ -32,7 +32,7 @@ export default {
 <style scoped>
 .goods-wrap {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: stretch;
   flex-wrap: wrap;
   padding-top: 10px;

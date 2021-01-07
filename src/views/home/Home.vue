@@ -5,7 +5,13 @@
         <span>购物街</span>
       </template>
     </nav-bar>
-    <scroll class="scroll-content" ref="scroll" @scroll="contentScroll">
+    <scroll
+      class="scroll-content"
+      ref="scroll"
+      @scroll="contentScroll"
+      :pull-up-load="true"
+      @pullingUp="loadMore"
+    >
       <div>
         <home-swiper :banners="banners"></home-swiper>
         <home-recommend :recommends="recommends"></home-recommend>
@@ -90,9 +96,16 @@ export default {
     backTop() {
       this.$refs.scroll.scrollTo(0, 0, 300);
     },
+    // 决定topback是否显示
     contentScroll(position) {
-      // 决定topback是否显示
       this.showTopBack = position.y < -200;
+    },
+    // 上拉加载更多
+    loadMore() {
+      this.getHomeGoods(this.currentIndex);
+
+      // 上拉之后刷新容器的高度
+      this.$refs.scroll.refresh();
     },
 
     /**
@@ -112,6 +125,9 @@ export default {
         this.goods[type].list.push(...res.data.list);
         this.goods[type].page += 1;
       });
+
+      // 结束上拉
+      this.$refs.scroll.finishPullUp();
     },
   },
 };
