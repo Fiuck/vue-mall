@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="goods-wrap">
     <goods-item
       v-for="item in goodsList"
       :key="item.link"
@@ -29,4 +29,12 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.goods-wrap {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  flex-wrap: wrap;
+  padding-top: 10px;
+}
+</style>
