@@ -31,6 +31,7 @@ const routes = [
   }
 ];
 
+// 解决在多次点击同一路由时报错的问题
 const originalPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch((err) => err);
