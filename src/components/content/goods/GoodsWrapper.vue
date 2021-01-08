@@ -1,8 +1,8 @@
 <template>
   <div class="goods-wrap">
     <goods-item
-      v-for="item in goodsList"
-      :key="item.link"
+      v-for="(item, index) in goodsList"
+      :key="index"
       :goodsItem="item"
     ></goods-item>
   </div>

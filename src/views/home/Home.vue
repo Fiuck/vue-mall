@@ -124,10 +124,10 @@ export default {
       getHomeGoods(type, page).then((res) => {
         this.goods[type].list.push(...res.data.list);
         this.goods[type].page += 1;
-      });
 
-      // 结束上拉
-      this.$refs.scroll.finishPullUp();
+         // 结束上拉
+        this.$refs.scroll.finishPullUp();
+      });
     },
   },
 };
