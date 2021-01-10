@@ -1,34 +1,39 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-const Home = () => import('views/home/Home')
-const Category = () => import('views/category/Category')
-const ShopCart = () => import('views/shopcart/ShopCart')
-const Profile = () => import('views/profile/Profile')
+const Home = () => import("views/home/Home");
+const Category = () => import("views/category/Category");
+const ShopCart = () => import("views/shopcart/ShopCart");
+const Profile = () => import("views/profile/Profile");
+const Detail = () => import("views/detail/Detail");
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '',
-    redirect: '/home'
+    path: "",
+    redirect: "/home",
   },
   {
-    path: '/home',
-    component: Home
+    path: "/home",
+    component: Home,
   },
   {
-    path: '/category',
-    component: Category
+    path: "/category",
+    component: Category,
   },
   {
-    path: '/shopcart',
-    component: ShopCart
+    path: "/shopcart",
+    component: ShopCart,
   },
   {
-    path: '/profile',
-    component: Profile
-  }
+    path: "/profile",
+    component: Profile,
+  },
+  {
+    path: "/detail",
+    component: Detail,
+  },
 ];
 
 // 解决在多次点击同一路由时报错的问题

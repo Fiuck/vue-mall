@@ -5,6 +5,13 @@
         <span>购物街</span>
       </template>
     </nav-bar>
+    <tab-control
+      :titles="titles"
+      @itemClick="itemClick"
+      ref="tabControl1"
+      v-show="isTabControlFiexed"
+      class="fixed"
+    ></tab-control>
     <scroll
       class="scroll-content"
       ref="scroll"
@@ -13,9 +20,16 @@
       @pullingUp="loadMore"
     >
       <div>
-        <home-swiper :banners="banners"></home-swiper>
+        <home-swiper
+          :banners="banners"
+          @swiperImgLoad="swiperImgLoad"
+        ></home-swiper>
         <home-recommend :recommends="recommends"></home-recommend>
-        <tab-control :titles="titles" @itemClick="itemClick"></tab-control>
+        <tab-control
+          :titles="titles"
+          @itemClick="itemClick"
+          ref="tabControl2"
+        ></tab-control>
         <goods-wrapper :goodsList="showGoods"></goods-wrapper>
       </div>
     </scroll>
@@ -26,6 +40,7 @@
 <script>
 import NavBar from "components/common/navbar/NavBar";
 import { getHomeMultiData, getHomeGoods } from "network/home";
+import { debounce } from "common/utils";
 import HomeSwiper from "views/home/childcomponents/HomeSwiper";
 import HomeRecommend from "views/home/childcomponents/HomeRecommend";
 import TabControl from "components/content/tabcontrol/TabControl";
@@ -61,8 +76,16 @@ export default {
         new: { page: 0, list: [] },
         sell: { page: 0, list: [] },
       },
+      // tab-control点击
       currentIndex: "pop",
+      // 是否显示回到顶部
       showTopBack: false,
+      // tab-control距离顶部的位置
+      tabOffSetTop: null,
+      // tab-control是否吸顶
+      isTabControlFiexed: false,
+      // 记录离开home组件时滑动的距离
+      scrollY: 0,
     };
   },
   computed: {
@@ -71,14 +94,37 @@ export default {
     },
   },
   created() {
-    //
     this.getHomeMultiData();
 
     this.getHomeGoods("pop");
     this.getHomeGoods("new");
     this.getHomeGoods("sell");
   },
+  activated() {
+    this.$refs.scroll.scrollTo(0, this.scrollY);
+    this.$refs.scroll.refresh();
+  },
+  deactivated() {
+    this.scrollY = this.$refs.scroll.getScrollY();
+  },
+  mounted() {
+    let refresh = debounce(this.$refs.scroll.refresh, 50);
+    // 图片被加载完就立马刷新scroll组件
+    this.$bus.$on("imgLoadEvent", () => {
+      refresh();
+    });
+  },
   methods: {
+    // 防抖函数
+    debounce(fn, delay) {
+      let timer = null;
+      return function(...args) {
+        if (timer) clearTimeout(timer);
+        timer = clearTimeout(() => {
+          fn.apply(this, args);
+        }, delay);
+      };
+    },
     /**
      * =========================处理事件监听=========================
      */
@@ -89,6 +135,9 @@ export default {
         type2: "sell",
       };
       this.currentIndex = json["type" + index];
+
+      this.$refs.tabControl1.currentIndex = index;
+      this.$refs.tabControl2.currentIndex = index;
     },
     /**
      * 回到顶部
@@ -96,9 +145,12 @@ export default {
     backTop() {
       this.$refs.scroll.scrollTo(0, 0, 300);
     },
-    // 决定topback是否显示
+    // 监听滚动
     contentScroll(position) {
-      this.showTopBack = position.y < -200;
+      // 决定topback是否显示
+      this.showTopBack = -position.y > 200;
+      // 决定tab-control是否吸顶
+      this.isTabControlFiexed = -position.y > this.tabOffSetTop;
     },
     // 上拉加载更多
     loadMore() {
@@ -106,6 +158,10 @@ export default {
 
       // 上拉之后刷新容器的高度
       this.$refs.scroll.refresh();
+    },
+    // 监听轮播图图片是否加载成功
+    swiperImgLoad() {
+      this.tabOffSetTop = this.$refs.tabControl2.$el.offsetTop;
     },
 
     /**
@@ -125,7 +181,7 @@ export default {
         this.goods[type].list.push(...res.data.list);
         this.goods[type].page += 1;
 
-         // 结束上拉
+        // 结束上拉
         this.$refs.scroll.finishPullUp();
       });
     },
@@ -144,5 +200,10 @@ export default {
   left: 0;
   right: 0;
   overflow-y: hidden;
+}
+.fixed {
+  position: relative;
+  z-index: 99;
+  background: #fff;
 }
 </style>

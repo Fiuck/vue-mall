@@ -1,6 +1,6 @@
 <template>
-  <div class="goods-item-wrapper">
-    <img :src="goodsItem.show.img" alt="" />
+  <div class="goods-item-wrapper" @click="detailClick">
+    <img :src="goodsItem.show.img" alt="" @load="imgLoad" />
     <div class="goods-info">
       <div class="goods-title">
         <p>{{ goodsItem.title }}</p>
@@ -25,6 +25,19 @@ export default {
   computed: {
     fav() {
       return this.goodsItem.cfav + "人收藏";
+    },
+  },
+  methods: {
+    imgLoad() {
+      this.$bus.$emit("imgLoadEvent");
+    },
+    detailClick() {
+      this.$router.push({
+        path: "/detail",
+        query: {
+          iid: this.goodsItem.iid,
+        },
+      });
     },
   },
   data() {
