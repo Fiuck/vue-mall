@@ -11,6 +11,17 @@
       <span>{{ goods.columns[1] }}</span>
       <span>{{ goods.services[goods.services.length - 1].name }}</span>
     </div>
+    <div class="detail-base-info-service">
+      <span
+        class="info-service-item"
+        v-for="index in goods.services.length - 1"
+        :key="index"
+      >
+        <!-- <img :src="goods.services[index - 1].icon" /> -->
+        <i class="iconfont icon-chenggong"></i>
+        <span>{{ goods.services[index - 1].name }}</span>
+      </span>
+    </div>
   </div>
 </template>
 
@@ -70,5 +81,25 @@ export default {
   justify-content: space-between;
   font-size: 13px;
   border-bottom: 1px solid rgba(100, 100, 100, 0.1);
+}
+.detail-base-info-service {
+  display: flex;
+  justify-content: space-between;
+  line-height: 60px;
+}
+
+/* .info-service-item img {
+  width: 14px;
+  height: 14px;
+  position: relative;
+  top: 2px;
+} */
+.info-service-item i {
+  position: relative;
+  top: 2px;
+}
+.info-service-item span {
+  font-size: 13px;
+  color: #333;
 }
 </style>

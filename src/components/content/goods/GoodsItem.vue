@@ -1,6 +1,6 @@
 <template>
   <div class="goods-item-wrapper" @click="detailClick">
-    <img :src="goodsItem.show.img" alt="" @load="imgLoad" />
+    <img :src="getImg" alt="" @load="imgLoad" />
     <div class="goods-info">
       <div class="goods-title">
         <p>{{ goodsItem.title }}</p>
@@ -25,6 +25,11 @@ export default {
   computed: {
     fav() {
       return this.goodsItem.cfav + "人收藏";
+    },
+    getImg() {
+      return (
+        this.goodsItem.img || this.goodsItem.image || this.goodsItem.show.img
+      );
     },
   },
   methods: {

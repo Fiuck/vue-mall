@@ -18,5 +18,7 @@ export default {
 
 <style>
 @import "assets/css/base.css";
-@import "assets/iconfont/iconfont.css";
+/* @import "assets/iconfont/iconfont.css"; */
+/* 在线iconfont图标 */
+@import "//at.alicdn.com/t/font_2291772_4ag9jfhj6jd.css";
 </style>
